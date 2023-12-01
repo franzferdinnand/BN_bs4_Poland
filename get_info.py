@@ -53,7 +53,3 @@ def get_full_info(page_path):
                 email.append(cleaned_email)
         result.append(email)
     return result
-
-
-if __name__ == '__main__':
-    print(get_full_info('./pages/page0.html'))

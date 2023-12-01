@@ -15,7 +15,3 @@ def get_links(page) -> list:
             result.append(link.get("href"))
 
     return result
-
-
-if __name__ == '__main__':
-    x = get_links(os.getenv("PATH_TO_SAVED_LINKS").format('151'))

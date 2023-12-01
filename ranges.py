@@ -30,10 +30,6 @@ def max_pages():
         soup = BeautifulSoup(file, 'lxml')
         nums = soup.find('div', {'id': 'resBtNav'}).find('div', {'class': 'navLeft'}).text
         max_page = nums.split('z')[1].rstrip().replace(' ', '')
-        # print(max_page[1].rstrip().replace(' ', ''))
+
     os.remove('temp.html')
     return int(max_page)
-
-
-if __name__ == '__main__':
-    print(ranges_for_parser(max_pages(), 30))
