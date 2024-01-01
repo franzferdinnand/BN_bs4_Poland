@@ -4,6 +4,7 @@ import os
 import requests
 
 from bs4 import BeautifulSoup
+from numpy.core.defchararray import isnumeric
 
 dotenv.load_dotenv('./venv/.env')
 
@@ -21,15 +22,16 @@ def ranges_for_parser(num_of_pages, step):
 
 
 def max_pages():
-    req = requests.get(os.getenv('URL').format(1), proxies=ast.literal_eval(os.getenv("PROXY")), timeout=5)
+    req = requests.get(os.getenv('URL').format(os.getenv("WOJEWÓDZTWO"),1), proxies=ast.literal_eval(os.getenv("PROXY")), timeout=5)
     if req.status_code == 200:
         with open('temp.html', 'w') as file:
             file.write(req.text)
 
     with open('temp.html', 'r') as file:
         soup = BeautifulSoup(file, 'lxml')
-        nums = soup.find('div', {'id': 'resBtNav'}).find('div', {'class': 'navLeft'}).text
-        max_page = nums.split('z')[1].rstrip().replace(' ', '')
+        nums_mod = soup.find('span', {'class': 'disabled'}).find_all('a', {'class': 'pgn'})
+        nums = [int(i.text) for i in nums_mod if isnumeric(i.text)]
+        max_page = max(nums)
 
     os.remove('temp.html')
     return int(max_page)

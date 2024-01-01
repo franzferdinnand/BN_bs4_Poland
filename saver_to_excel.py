@@ -1,4 +1,6 @@
 import datetime
+import os
+
 import pandas as pd
 
 
@@ -23,5 +25,5 @@ def refactor_and_save_to_excel(data, num) -> None:
                                                   "").replace("'",
                                                               "") for x in df['web'].values]
 
-    df.to_excel(f'output_files/database_{datetime.date.today()}_{num}.xlsx',
+    df.to_excel(f'output_files/{os.getenv("WOJEWODZTWO")}_{datetime.date.today()}_{num}.xlsx',
                 sheet_name=f'poland{num}', index=False)
