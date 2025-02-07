@@ -1,5 +1,7 @@
 # BN_bs4_Poland
 
+## CAUTION This project is developed for specific website. It will not work with other websites !!!
+
 ## 📌 Project Description
 **BN_bs4_Poland** is a Python script for web scraping that utilizes **BeautifulSoup4** to extract data from web page. The main goal is to automate information gathering from Polish website.
 
